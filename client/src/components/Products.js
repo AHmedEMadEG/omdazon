@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import styled from "styled-components";
 import Product from "./Product";
-import { mobile } from "../responsive"
+import { mobile } from "../responsive";
 import { useEffect, useState } from "react";
 import ProductsService from "../services/products.service";
 
@@ -10,6 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   background-color: lightgray;
+  justify-content: center;
   ${mobile({marginTop: "10px"})};
 `
 

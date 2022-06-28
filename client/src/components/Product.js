@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -17,6 +17,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: 5px;
+  max-width: 350px;
   ${mobile({height: "80vh"})};
 `
 
