@@ -31,13 +31,6 @@ require('./app/routes/orders.routes')(app);
 require('./app/routes/payment.routes')(app);
 
 
-// for heroku deploying
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
-
 
 const PORT = process.env.PORT || 5000;
 
