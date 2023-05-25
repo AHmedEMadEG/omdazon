@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 // DOTENV config
-const envPath = process.env.NODE_ENV || 'local';
+const envPath = process.env.NODE_ENV || '';
 require('dotenv').config({path: `${envPath}.env`});
 
 // DB config
@@ -32,6 +32,7 @@ require('./app/routes/payment.routes')(app);
 
 
 
-const PORT = process.env.PORT || 5000;
+
+const PORT = process.env.PORT || 5000;  
 
 app.listen(PORT, () => console.log(`Server started on Port ${PORT}`));

@@ -1,4 +1,4 @@
-import { Badge } from '@mui/material'
+import Badge from '@mui/material/Badge'
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import styled from 'styled-components'
