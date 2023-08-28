@@ -86,6 +86,8 @@ const Navbar = () => {
         persistor.purge();
         dispatch(logout());
         dispatch(clearCart());
+        document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     }
   return (
     <Container>

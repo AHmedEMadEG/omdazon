@@ -7,4 +7,16 @@ module.exports = (app) => {
 
     // POST /LOGIN
     app.post('/api/auth/login', authController.logIn);
+
+
+    // GET /LINE-LOGIN
+    app.get('/api/auth/lineLogin', authController.lineLogin);
+
+
+    // GET /AUTH-CALLBACK
+    app.get('/api/auth/lineCallback', authController.lineCallback);
+
+
+    // GET /GOOGLE
+    app.get('/api/auth/google', authController.google);
 }
