@@ -101,7 +101,7 @@ const Slider = () => {
                         <InfoContainer>
                             <Title>{item.title}</Title>
                             <Desc>{item.desc}</Desc>
-                            <Button>Check Now(NOT WORKING YET!)</Button>
+                            <Button>Check Now</Button>
                         </InfoContainer>
                     </Slide>
                 ))}

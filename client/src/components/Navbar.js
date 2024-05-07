@@ -97,7 +97,7 @@ const Navbar = () => {
             </Left>
 
             <Center>
-                <Input placeholder='NOT WORKING YET!'/>
+                <Input placeholder='Search'/>
                 <Search>
                     <SearchIcon />
                 </Search>    

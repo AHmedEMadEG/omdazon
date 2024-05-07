@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import ordersService from "../services/orders.service";
 import { Link } from "react-router-dom";
+import { clearCart } from "../redux/cartRedux";
 
 const Success = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const data = location.state.stripeData;
   const cart = location.state.cart;
@@ -16,15 +18,18 @@ const Success = () => {
       userId: currentUser._id,
     products: cart.products.map((item) => ({
       productId: item._id,
-      quantity: item._quantity,
+      quantity: item.quantity,
     })),
     amount: cart.total,
     address: data.billing_details.address
     }, currentUser.token)
-    .then(res => setOrderId(res.data._id))
+    .then(res => {
+      setOrderId(res.data._id);
+      dispatch(clearCart());
+    })
     .catch(err => console.log(err));
 
-  }, [cart, data, currentUser]);
+  }, [cart, data, currentUser, dispatch]);
 
   return (
     <div
@@ -34,12 +39,15 @@ const Success = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        background: "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%),url('./images/success.jpeg')",
+        backgroundSize: "cover",
+        color: "white"
       }}
     >
       {orderId
-        ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successfull. Your order is being prepared...`}
-      <Link to='/' style={{ padding: 10, marginTop: 20, backgroundColor: "green", textDecoration: "none", color: "white"}}>Continue Shopping</Link>
+        ? (<p style={{backgroundColor: "crimson", borderRadius: "10px", padding: "10px"}}><b>Order has been created successfully. Your order number is ({orderId})</b></p>)
+        : (<p><b>Successfull. Your order is being prepared...</b></p>)}
+      <Link to='/' style={{ padding: 10, marginTop: 20, backgroundColor: "green", textDecoration: "none", color: "white", borderRadius: "10px"}}>Continue Shopping</Link>
     </div>
   );
 };

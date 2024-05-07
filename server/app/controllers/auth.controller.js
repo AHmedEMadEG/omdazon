@@ -138,5 +138,5 @@ exports.lineCallback = async (req, res) => {
 
 
 exports.google = (req, res) => {
-    console.log("gogogogogogogogogogogoglke......");
+    console.log("google login......");
 }

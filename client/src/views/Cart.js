@@ -172,6 +172,7 @@ const Cart = () => {
         stripeToken && 
             checkoutService.checkout(stripeToken.id, cart.total * 100)
                 .then(res => {
+                    console.log(cart)
                     navigate("/success", { state: {stripeData: res.data, cart} })
                 }).catch(err => console.log(err))
     },[stripeToken, cart, navigate]);
@@ -188,6 +189,7 @@ const Cart = () => {
             <Bottom>
                 <Info>
                     {cart.quantity ? (cart.products.map(product => (
+                    <>
                       <Product key={uniqueKey++}>
                         <ProductDetails>
                             <Image src={product.img}/>
@@ -211,10 +213,11 @@ const Cart = () => {
                             <ProductPrice>$ {product.price}</ProductPrice>
                         </PriceDetails>
                       </Product>
+                        <hr/>
+                    </>
                         )))
                         : (<Alert className="alert alert-danger">Your cart is EMPTY!</Alert>)
                     }
-                    <hr/>
                 </Info>
                 <Summary>
                     <SummaryTitle>ORDER SUMMARY</SummaryTitle>

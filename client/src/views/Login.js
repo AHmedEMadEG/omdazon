@@ -16,12 +16,21 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  background-color: #6690aa;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%)
+        ,url("./images/login.jpeg");
+  background-size: cover;
   height: 100vh;
+  @media screen and (max-height: 505px) {
+    @media screen and (max-height: 300px) {
+      height: 310vh;
+    }
+    height: 170vh;
+  }
 `
 
-const ImageContainer = styled.div`
- 
+const FormContainer = styled.div`
+  border: 2px solid grey;
+  border-radius: 10px;
 `
 
 const Alert = styled.div`
@@ -32,13 +41,14 @@ const ButtonAndMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  margin-bottom: 20px;
 `
 const OtherLoginMethodes = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 30px 0;
+
 `
 
 const Icons = styled.div`
@@ -52,6 +62,12 @@ const IconContainer = styled.div`
   margin-right: 10px;
   background-color: black;
   cursor: pointer;
+`
+
+const SignupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+ align-items: center;
 `
 
 const Login = () => {
@@ -118,15 +134,9 @@ const Login = () => {
 
   return (
     <Container>
-      <ImageContainer>
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          style={{ width: "100%", height: "100%", borderRadius: "50%" }}
-        />
-      </ImageContainer>
       <Form onSubmit={handleLogin} ref={form}>
-        <div style={{ margin: "10px 5px 0px" }}>
+       <FormContainer>
+        <div style={{ margin: "25px 15px 20px" }}>
           <Input
             style={{ padding: "10px" }}
             placeholder="username"
@@ -138,7 +148,7 @@ const Login = () => {
             validations={[required]}
           />
         </div>
-        <div style={{ margin: "10px 5px 0px" }}>
+        <div style={{ margin: "30px 15px 20px" }}>
           <Input
             style={{ padding: "10px" }}
             placeholder="password"
@@ -164,9 +174,10 @@ const Login = () => {
           </button>
         </ButtonAndMessageContainer>
         <CheckButton style={{ display: "none" }} ref={checkBtn} />
+       </FormContainer>
       </Form>
       <OtherLoginMethodes>
-        <p>OR LOGIN WITH</p>
+        <p><b>OR LOGIN WITH</b></p>
         <Icons>
           <IconContainer>
             <img
@@ -188,9 +199,12 @@ const Login = () => {
         </Icons>
 
       </OtherLoginMethodes>
-      <div>
-        <span><b>Don't have an account?</b></span><Link to="/register" style={{ color: "white", marginLeft: "10px" }}>Create a new One</Link>
-      </div>
+      <SignupContainer>
+        <p><b>Don't have an account?</b></p>
+        <Link to="/register" style={{ color: "white", textDecoration: "none", border: "1px solid #0d6efd", borderRadius: "5px", padding: "5px", backgroundColor: "#0d6efd" }}>
+          Create an Account
+        </Link>
+      </SignupContainer>
     </Container>
   );
 };

@@ -13,12 +13,24 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 50px;
-  background-color: #6690aa;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%)
+        ,url("./images/register.jpeg");
+  background-size: cover;
   height: 100vh;
+  @media screen and (max-height: 605px) {
+    @media screen and (max-height: 400px) {
+      @media screen and (max-height: 300px) {
+      height: 310vh;
+    }
+      height: 200vh;
+    }
+    height: 155vh;
+  }
 `
 
-const ImageContainer = styled.div`
- 
+const FormContainer = styled.div`
+  border: 2px solid grey;
+  border-radius: 10px;
 `
 
 const Alert = styled.div`
@@ -32,6 +44,32 @@ const ButtonAndMessageContainer = styled.div`
   padding: 10px;
 `
 
+const OtherSignupMethodes = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+
+`
+
+const Icons = styled.div`
+ display: flex;
+ align-items: center;
+`
+
+const IconContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: black;
+  cursor: pointer;
+`
+
+const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const Register = () => {
   const navigate = useNavigate();
@@ -115,16 +153,14 @@ const Register = () => {
     }
   };
 
+  const iconClicked = (methode) => {
+    window.location.href = process.env.REACT_APP_API_URL + `auth/${methode}`;
+  }
+
   return (
     <Container className="col-md-12">
-      <ImageContainer>
-        <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          style={{width: "100%", height: "100%", borderRadius: "50%"}}
-          />
-      </ImageContainer>
-        <Form style={{display: "flex", flexWrap: "wrap", justifyContent: "center", width: "490px", margin: "20px"}} onSubmit={handleRegister} ref={form}>
+      <FormContainer>
+        <Form style={{padding: "25px"}} onSubmit={handleRegister} ref={form}>
               <div style={{margin: "10px 5px 0px"}}>
                 <Input
                   style={{padding: "10px"}}
@@ -191,9 +227,35 @@ const Register = () => {
           </ButtonAndMessageContainer>
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
-        <div>
-          <span><b>Have an account?</b></span><Link to="/login" style={{ color: "white", marginLeft: "10px"}}>Login</Link>
-        </div>
+      </FormContainer>
+      <OtherSignupMethodes>
+        <p><b>OR SIGNUP WITH</b></p>
+        <Icons>
+          <IconContainer>
+            <img
+              src="./images/google.png"
+              alt="google"
+              style={{ width: "100%", height: "100%" }}
+              onClick={() => iconClicked("google")}
+            />
+          </IconContainer>
+
+          <IconContainer>
+            <img
+              src="./images/line.png"
+              alt="line"
+              style={{ width: "100%", height: "100%" }}
+              onClick={() => iconClicked("lineLogin")}
+            />
+          </IconContainer>
+        </Icons>
+      </OtherSignupMethodes>            
+        <LoginContainer>
+          <p><b>Have an account?</b></p>
+          <Link to="/login" style={{ color: "white", textDecoration: "none", border: "1px solid #0d6efd", borderRadius: "5px", padding: "5px", backgroundColor: "#0d6efd" }}>
+            Login
+          </Link>
+        </LoginContainer>
     </Container>
   );
 };
